@@ -19,7 +19,13 @@ const typeDefs = `
     }
 
     type game{
-
+        _id: ID
+        name: String
+        image: String
+        platforms: String
+        rating: Number
+        review: String
+        squads: [squad]!
     }
 
     type auth{
@@ -30,6 +36,8 @@ const typeDefs = `
     type Query {
         players: [player]
         player(username: String!): player
+        games:[game]
+        game(name: String!): game
         squads(username: String!): [squad]
         squad(squadId: ID!): squad
         me: player
@@ -41,9 +49,9 @@ const typeDefs = `
         login(email: String!, password: String!): auth
         addFriend(playerId: ID!, username):player
         removeFriend(playerId: ID!): player
-        addSquad(squadText: String!): squad
-        addComment(squadId: ID!, commentText: String!): squad
+        addGame(name: String!): game
+        removeGame(gameId: ID!): game
+        addSquad(name: String!): squad
         removeSquad(squadId: ID!): squad
-        removeComment(squadId: ID!, commentId: ID!): squad
     }
 `
