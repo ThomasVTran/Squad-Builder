@@ -1,5 +1,5 @@
-const { Schema, Model } = require('mongoose');
-const date = require('../utils/dateFormat');
+const { Schema, Model } = require("mongoose");
+const date = require("../utils/dateFormat");
 
 const squadSchema = new Schema({
    squadName: {
@@ -24,6 +24,10 @@ const squadSchema = new Schema({
     playStyle: [{
         type: String
     }],
+    players: [{
+        type: Schema.Types.ObjectID,
+        ref: player
+      }],
 }
 );
 
