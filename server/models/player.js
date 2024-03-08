@@ -10,7 +10,7 @@ const validatePassword = function(newPassword) {
   const newPassword = document.getElementById('changePasswordForm').newPassword.value;
   const minNumberofChars = 5;
   const maxNumberofChars = 20;
-  const regularExpression  = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  const regularExpression  = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,20}$/;
   alert(newPassword); 
   if(newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars){
       return false;
@@ -45,9 +45,13 @@ const playerSchema = new Schema({
     match: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
     validate: validatePassword
   },
+  squads: [{
+    type: Schema.Types.ObjectId,
+    ref: 'squad',
+  }],
   friends: [{
     type: Schema.Types.ObjectId, 
-    ref: 'User',
+    ref: 'player',
 }]
 },
 {
@@ -69,7 +73,6 @@ playerSchema.pre('save', async function (next) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-
   next();
 });
 
