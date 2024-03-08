@@ -1,5 +1,5 @@
-const gameSchema = require('./game');
-const playerSchema = require('./player');
-const squadSchema = require('./squad');
+const game = require('./game');
+const player = require('./player');
+const squad = require('./squad');
 
-module.exports = {gameSchema, playerSchema, squadSchema};
+module.exports = {game, player, squad};

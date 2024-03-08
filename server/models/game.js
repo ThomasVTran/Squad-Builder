@@ -5,5 +5,13 @@ const gameSchema = new Schema({
   image: { type: String },
   platforms: {type: String},
   rating: {type: Number},
-  review: {type: String}
+  review: {type: String},
+  squads: [{
+    type: Schema.Types.ObjectID,
+    ref: squad
+  }]
 });
+
+const game = Model('game', gameSchema)
+
+module.exports = game;
