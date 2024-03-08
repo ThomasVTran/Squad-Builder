@@ -14,9 +14,9 @@ const squad = new Schema({
     minLength: 2,
     maxLength: 8,
   },
-  playStyle: {
-    type: [String],
-  },
+  playStyle: [{
+    type: String,
+  }],
   ranked: {
     type: Boolean,
   },
