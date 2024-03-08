@@ -77,6 +77,6 @@ playerSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const Player = model('Player', playerSchema);
+const player = model('player', playerSchema);
 
-module.exports = Player;
+module.exports = player;
