@@ -7,3 +7,7 @@ const gameSchema = new Schema({
   rating: {type: Number},
   review: {type: String}
 });
+
+const game = Model('game', gameSchema)
+
+module.exports = game;
