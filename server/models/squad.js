@@ -17,17 +17,17 @@ const squadSchema = new Schema({
     ranked:{
         type: Boolean
     },
-    time: {
-        type: Date,
-        time: date
-    },    
     playStyle: [{
         type: String
     }],
     players: [{
         type: Schema.Types.ObjectID,
         ref: player
-      }],
+    }],
+    createdAt: {
+        type: Date,
+        time: date
+    }  
 }
 );
 
