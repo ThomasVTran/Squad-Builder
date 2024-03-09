@@ -35,10 +35,11 @@ const typeDefs = `
 
     type Query {
         # players: [player]
-        # player(username: String!): player
-        players(playerId: ID!)
-        # game(name: String!): cd ../game
+        player(username: String!): player
+        # players(playerId: ID!)
+        # game(name: String!): game
         games:[game]
+        game(gameId: ID!): game
         squads(username: String!): [squad]
         squads(gameName: String!)
         squad(squadId: ID!): squad
