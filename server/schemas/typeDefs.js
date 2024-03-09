@@ -34,11 +34,13 @@ const typeDefs = `
     }
 
     type Query {
-        players: [player]
-        player(username: String!): player
+        # players: [player]
+        # player(username: String!): player
+        players(playerId: ID!)
+        # game(name: String!): cd ../game
         games:[game]
-        game(name: String!): game
         squads(username: String!): [squad]
+        squads(gameName: String!)
         squad(squadId: ID!): squad
         me: player
     }
@@ -47,11 +49,11 @@ const typeDefs = `
         addPlayer(username: String!, email: String!, password: String!): auth
         removePlayer(playerId: ID!): auth
         login(email: String!, password: String!): auth
-        addFriend(playerId: ID!, username):player
+        addFriend(playerId: ID!):player
         removeFriend(playerId: ID!): player
-        addGame(name: String!): game
+        addGame(name: String!, image: String!, platforms: String, rating: Int, review: String): game
         removeGame(gameId: ID!): game
-        addSquad(name: String!): squad
+        addSquad(squadName: String!, playerCount: Int, ranked: Boolean, playStyle: String): squad
         removeSquad(squadId: ID!): squad
     }
 `
