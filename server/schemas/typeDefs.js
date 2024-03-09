@@ -13,7 +13,7 @@ const typeDefs = `
         squadName: String
         playerCount: Number
         ranked: Boolean
-        time: Date
+        createdAt: Date
         playStyle: [String]!
         players: [player]!
     }
@@ -48,12 +48,12 @@ const typeDefs = `
 
     type Mutation {
         addPlayer(username: String!, email: String!, password: String!): auth
-        removePlayer(playerId: ID!): auth
         login(email: String!, password: String!): auth
-        addFriend(playerId: ID!):player
+        removePlayer(playerId: ID!): auth
+        addFriend(playerId: ID!, username: String!):player
         removeFriend(playerId: ID!): player
         addGame(name: String!, image: String!, platforms: String, rating: Int, review: String): game
-        removeGame(gameId: ID!): game
+        # removeGame(gameId: ID!): game
         addSquad(squadName: String!, playerCount: Int, ranked: Boolean, playStyle: String): squad
         removeSquad(squadId: ID!): squad
     }
