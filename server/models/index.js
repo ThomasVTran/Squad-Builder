@@ -1,5 +1,7 @@
-const game = require('./game');
-const player = require('./player');
-const squad = require('./squad');
 
-module.exports = {game, player, squad};
+const Game = require('./game')
+const Player = require('./player');
+const Squad = require('./squad');
+
+
+module.exports = {Game, Player, Squad};

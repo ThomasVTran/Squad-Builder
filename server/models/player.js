@@ -7,7 +7,7 @@ const validateEmail = function(email) {
 };
 
 const validatePassword = function(newPassword) {
-  const newPassword = document.getElementById('changePasswordForm').newPassword.value;
+  newPassword = document.getElementById('changePasswordForm').newPassword.value;
   const minNumberofChars = 5;
   const maxNumberofChars = 20;
   const regularExpression  = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,20}$/;
@@ -47,11 +47,11 @@ const playerSchema = new Schema({
   },
   squads: [{
     type: Schema.Types.ObjectId,
-    ref: 'squad',
+    ref: 'Squad',
   }],
   friends: [{
     type: Schema.Types.ObjectId, 
-    ref: 'player',
+    ref: 'Player',
 }]
 },
 {
@@ -80,6 +80,6 @@ playerSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const player = model('player', playerSchema);
+const Player = model('Player', playerSchema);
 
-module.exports = player;
+module.exports = Player;
