@@ -8,7 +8,7 @@ const resolvers = {
       return Player.find({})
     },
     player: async (parent, { username }) => {
-      return Player.findOne({ username }).populate("squads", "friends");
+      return Player.findOne({ username }).populate("friends", "squads");
     },
     games: async () => {
       return Game.find({});
@@ -48,7 +48,6 @@ const resolvers = {
     removePlayer: async (parent, {playerId}) => {
         return Player.findOneAndDelete({_id: playerId})
     },
-    // add friend works but the connection between the friendId and corresponding username/info is not made
     addFriend: async (parent, {playerId, friendId}) => {
         return Player.findOneAndUpdate(
             {_id: playerId},
@@ -56,10 +55,10 @@ const resolvers = {
             {new: true, runValidators: true}
         )
     },
-    removeFriend: async (parent, {playerId}) => {
+    removeFriend: async (parent, {playerId, friendId}) => {
        return Player.findOneAndUpdate(
         {_id: playerId},
-        {$pull: {friends: username}},
+        {$pull: {friends: friendId}},
         {new: true, runValidators: true}
        )
     },

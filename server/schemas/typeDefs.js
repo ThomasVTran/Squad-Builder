@@ -49,7 +49,7 @@ type Mutation {
     login(email: String!, password: String!): Auth
     removePlayer(playerId: ID!): Auth
     addFriend(playerId: ID!, friendId: ID!): Player
-    removeFriend(playerId: ID!): Player
+    removeFriend(playerId: ID!, friendId: ID!): Player
     addGame(name: String!, image: String!, platforms: String, rating: Int, review: String): Game
     addSquad(squadName: String!, playerCount: Int, ranked: Boolean, playStyle: [String]): Squad
     removeSquad(squadId: ID!): Squad
