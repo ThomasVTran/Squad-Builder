@@ -51,7 +51,7 @@ type Mutation {
     addFriend(playerId: ID!, friendId: ID!): Player
     removeFriend(playerId: ID!, friendId: ID!): Player
     addGame(name: String!, image: String!, platforms: String, rating: Int, review: String): Game
-    addSquad(squadName: String!, playerCount: Int, ranked: Boolean, playStyle: [String]): Squad
+    addSquad(playerId: ID!, gameId: ID!, squadName: String!, playerCount: Int, ranked: Boolean, playStyle: [String]): Squad
     removeSquad(squadId: ID!): Squad
 }
 
