@@ -66,7 +66,7 @@ const resolvers = {
     addGame: async (parent, {name, image, platforms, rating, review}) => {
         return Game.create({name, image, platforms, rating, review})
     },
-    addSquad: async (playerId, gameId, squadName, playerCount, ranked, playStyle, createdBy, gameFor) => {
+    addSquad: async (parent, {playerId, gameId, squadName, playerCount, ranked, playStyle, createdBy, gameFor}) => {
         const squad = await Squad.create({
             squadName, playerCount, ranked, playStyle, createdBy, gameFor
         })
@@ -83,22 +83,38 @@ const resolvers = {
         return squad
     },
 
-    removeSquad: async (parent, {squadId}) => {
-        const squad = await Squad.findOneAndDelete({
+    removeSquad: async (parent, {squadId, playerId, gameId}) => {
+        await Squad.findOneAndDelete({
             _id: squadId
         })
 
         await Player.findOneAndUpdate(
             {_id: playerId},
-            {$pull: {squads: squad}},
+            {$pull: {squads: squadId}},
         )
 
         await Game.findOneAndUpdate(
             {_id: gameId},
-            {$pull: {squads: squad}},
+            {$pull: {squads: squadId}},
         )
-        return squad;
+        return squadId;
     },
+
+    squadPlus: async (parent, {squadId, playerId}) => {
+      return Squad.findOneAndUpdate(
+        {_id: squadId},
+        {$addToSet: {players: playerId}},
+        {new: true}
+        )
+    },
+
+    squadMinus: async (parent, {squadId, playerId}) => {
+      return Squad.findOneAndUpdate(
+        {_id: squadId},
+        {$pull: {players: playerId}},
+        {new: true}
+        )
+    }
   },
 };
 

@@ -44,7 +44,7 @@ const playerSchema = new Schema({
     unique: true,
     match: /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{5,20}$/,
     // validatePAssword currently returns an error when attempting to add player
-    validate: validatePassword
+    // validate: validatePassword
   },
   squads: [{
     type: Schema.Types.ObjectId,

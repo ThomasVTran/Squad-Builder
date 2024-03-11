@@ -11,7 +11,7 @@ const squadSchema = new Schema({
     playerCount: {
         type: Number, 
         required: true, 
-        minLength: 2, 
+        minLength: 1, 
         maxLength:8
     },
     ranked:{
@@ -30,7 +30,7 @@ const squadSchema = new Schema({
         required: true
     },
     gameFor: {
-        type: Schema.Types.ObjectID,
+        type: String,
         ref: 'Game',
         required: true
     },
