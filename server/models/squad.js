@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 
 const squadSchema = new Schema({
-   squadName: {
+    squadName: {
     type: String, 
     required: true, 
     minLength: 4, 
@@ -24,11 +24,21 @@ const squadSchema = new Schema({
         type: Schema.Types.ObjectID,
         ref: 'Player'
     }],
+    createdBy: {
+        type: String, 
+        ref: 'Player',
+        required: true
+    },
+    gameFor: {
+        type: Schema.Types.ObjectID,
+        ref: 'Game',
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp)
-    }  
+    }
 }
 );
 

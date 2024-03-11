@@ -10,7 +10,7 @@ const validatePassword = function(newPassword) {
   newPassword = document.getElementById('changePasswordForm').newPassword.value;
   const minNumberofChars = 5;
   const maxNumberofChars = 20;
-  const regularExpression  = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,20}$/;
+  const regularExpression  = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{5,20}$/;
   alert(newPassword); 
   if(newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars){
       return false;
@@ -42,9 +42,9 @@ const playerSchema = new Schema({
     required: true,
     minlength: 5,
     unique: true,
-    match: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+    match: /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{5,20}$/,
     // validatePAssword currently returns an error when attempting to add player
-    // validate: validatePassword
+    validate: validatePassword
   },
   squads: [{
     type: Schema.Types.ObjectId,
