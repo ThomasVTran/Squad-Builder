@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 
-import Auth from '../utils/auth'
+import Auth from '../../utils/auth.js'
 
 const Navigation = () => {
     const currentPage = useLocation().pathname;
