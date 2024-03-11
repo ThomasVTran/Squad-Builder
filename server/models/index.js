@@ -1,4 +1,3 @@
-
 const Game = require('./game')
 const Player = require('./player');
 const Squad = require('./squad');
