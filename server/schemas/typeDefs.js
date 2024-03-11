@@ -17,6 +17,8 @@ type Squad {
     createdAt: String
     playStyle: String
     players: [Player]!
+    gameFor: String
+    createdBy: String
 }
 
 type Game{
