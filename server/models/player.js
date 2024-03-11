@@ -16,7 +16,7 @@ const validatePassword = function(newPassword) {
       return false;
   }
   if(!regularExpression.test(newPassword)) {
-      alert("password should contain atleast one number and one special character");
+      alert("password should contain at least one number and one special character");
       return false;
   } 
 };
@@ -43,7 +43,8 @@ const playerSchema = new Schema({
     minlength: 5,
     unique: true,
     match: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-    validate: validatePassword
+    // validatePAssword currently returns an error when attempting to add player
+    // validate: validatePassword
   },
   squads: [{
     type: Schema.Types.ObjectId,

@@ -1,12 +1,17 @@
 const { Game, Player, Squad } = require("../models/index");
+const { signToken, AuthenticationError } = require('../utils/auth');
+
 
 const resolvers = {
   Query: {
+    players: async () => {
+      return Player.find({})
+    },
     player: async (parent, { username }) => {
       return Player.findOne({ username }).populate("squads", "friends");
     },
     games: async () => {
-      return Game.find();
+      return Game.find({});
     },
     games: async (parent, { gameId }) => {
       return Game.findOne({ _id: gameId }).populate("squads");
@@ -43,10 +48,11 @@ const resolvers = {
     removePlayer: async (parent, {playerId}) => {
         return Player.findOneAndDelete({_id: playerId})
     },
-    addFriend: async (parent, {playerId, username}) => {
+    // add friend works but the connection between the friendId and corresponding username/info is not made
+    addFriend: async (parent, {playerId, friendId}) => {
         return Player.findOneAndUpdate(
             {_id: playerId},
-            {$addToSet: {friends: username}},
+            {$addToSet: {friends: friendId}},
             {new: true, runValidators: true}
         )
     },
