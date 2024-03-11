@@ -62,6 +62,7 @@ const resolvers = {
         {new: true, runValidators: true}
        )
     },
+
     addGame: async (parent, {name, image, platforms, rating, review}) => {
         return Game.create({name, image, platforms, rating, review})
     },
@@ -81,6 +82,7 @@ const resolvers = {
         )
         return squad
     },
+
     removeSquad: async (parent, {squadId}) => {
         const squad = await Squad.findOneAndDelete({
             _id: squadId

@@ -23,9 +23,7 @@ type Game{
     _id: ID
     name: String
     image: String
-    platforms: String
-    rating: Int
-    review: String
+    description: String
     squads: [Squad]!
 }
 
@@ -53,6 +51,7 @@ type Mutation {
     addGame(name: String!, image: String!, platforms: String, rating: Int, review: String): Game
     addSquad(playerId: ID!, gameId: ID!, squadName: String!, playerCount: Int, ranked: Boolean, playStyle: [String]): Squad
     removeSquad(squadId: ID!): Squad
+
 }
 
 `
