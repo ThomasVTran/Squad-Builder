@@ -1,0 +1,52 @@
+[
+    {
+        "username": "Sam Kensworth",
+        "email": "SamKensworth@email.com",
+        "password": "Password!01"
+    },
+    {
+        "username": "Karl Sagen",
+        "email": "KarlSagen@email.com",
+        "password": "Password!02"
+    },
+    {
+        "username": "Megan Pennies",
+        "email": "MeganPennies@email.com",
+        "password": "Password!03"
+    },
+    {
+        "username": "Kiki Palmer",
+        "email": "KikiPalmer@email.com",
+        "password": "Password!04"
+    },
+    {
+        "username": "Henry Cavill",
+        "email": "HenryCavill@email.com",
+        "password": "Password!05"
+    },
+    {
+        "username": "Florence Pugh",
+        "email": "FlorencePugh@email.com",
+        "password": "Password!06"
+    },
+    {
+        "username": "Johnny Depp",
+        "email": "JohnnyDepp@email.com",
+        "password": "Password!07"
+    },
+    {
+        "username": "Arya Stark",
+        "email": "AryaStark@email.com",
+        "password": "Password!08"
+    },
+    {
+        "username": "Cool Guy",
+        "email": "CoolGuy@email.com",
+        "password": "Password!09"
+    },
+    {
+        "username": "Drew Barrymore",
+        "email": "DrewBarrymore@email.com",
+        "password": "Password!10"
+    }
+]
