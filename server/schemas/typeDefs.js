@@ -15,7 +15,7 @@ type Squad {
     playerCount: Int
     ranked: Boolean
     createdAt: String
-    playStyle: String
+    playStyle: [String]
     players: [Player]!
     gameFor: String
     createdBy: String
@@ -39,7 +39,7 @@ type Query {
     player(username: String!): Player
     games: [Game]
     game(gameId: ID!): Game
-    squads(username: String!, gameId: ID): [Squad]
+    squads(username: String, gameId: ID): [Squad]
     squad(squadId: ID!): Squad
     me: Player
 }
@@ -51,8 +51,10 @@ type Mutation {
     addFriend(playerId: ID!, friendId: ID!): Player
     removeFriend(playerId: ID!, friendId: ID!): Player
     addGame(name: String!, image: String!, platforms: String, rating: Int, review: String): Game
-    addSquad(playerId: ID!, gameId: ID!, squadName: String!, playerCount: Int, ranked: Boolean, playStyle: [String]): Squad
-    removeSquad(squadId: ID!): Squad
+    addSquad(playerId: ID!, gameId: ID!, squadName: String!, playerCount: Int, ranked: Boolean, playStyle: [String], createdBy: String, gameFor: String): Squad
+    removeSquad(squadId: ID!, playerId: ID!, gameId: ID!): Squad
+    squadPlus(squadId: ID!, playerId: ID! ): Squad
+    squadMinus(squadId: ID!, playerId: ID! ): Squad
 
 }
 
