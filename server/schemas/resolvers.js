@@ -5,7 +5,7 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
   Query: {
     players: async () => {
-      return Player.find({})
+      return Player.find({}).populate("friends");
     },
     player: async (parent, { username }) => {
       return Player.findOne({ username }).populate("friends", "squads");
@@ -66,9 +66,9 @@ const resolvers = {
     addGame: async (parent, {name, image, platforms, rating, review}) => {
         return Game.create({name, image, platforms, rating, review})
     },
-    addSquad: async (playerId, gameId, squadName, playerCount, ranked, playStyle) => {
+    addSquad: async (playerId, gameId, squadName, playerCount, ranked, playStyle, createdBy, gameFor) => {
         const squad = await Squad.create({
-            squadName, playerCount, ranked, playStyle
+            squadName, playerCount, ranked, playStyle, createdBy, gameFor
         })
 
         await Player.findOneAndUpdate(

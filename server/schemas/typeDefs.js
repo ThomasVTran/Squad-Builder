@@ -37,7 +37,7 @@ type Query {
     player(username: String!): Player
     games: [Game]
     game(gameId: ID!): Game
-    squads(username: String!, gameId: ID): [Squad]
+    squads(username: String, gameId: ID): [Squad]
     squad(squadId: ID!): Squad
     me: Player
 }
