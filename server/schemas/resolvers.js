@@ -65,7 +65,7 @@ const resolvers = {
     addGame: async (parent, {name, image, description}) => {
         return Game.create({name, image, description})
     },
-    addSquad: async (playerId, gameId, squadName, playerCount, ranked, playStyle) => {
+    addSquad: async (parent, {playerId, gameId, squadName, playerCount, ranked, playStyle}) => {
         const squad = await Squad.create({
             squadName, playerCount, ranked, playStyle
         })
@@ -81,10 +81,8 @@ const resolvers = {
         )
         return squad
     },
-    removeSquad: async (parent, {squadId}) => {
-        const squad = await Squad.findOneAndDelete({
-            _id: squadId
-        })
+    removeSquad: async (parent, {squadId, playerId, gameId}) => {
+        const squad = await Squad.findOneAndDelete({_id: squadId})
 
         await Player.findOneAndUpdate(
             {_id: playerId},
