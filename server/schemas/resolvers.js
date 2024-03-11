@@ -66,9 +66,9 @@ const resolvers = {
     addGame: async (parent, {name, image, platforms, rating, review}) => {
         return Game.create({name, image, platforms, rating, review})
     },
-    addSquad: async (playerId, gameId, squadName, playerCount, ranked, playStyle) => {
+    addSquad: async (playerId, gameId, squadName, playerCount, ranked, playStyle, createdBy, gameFor) => {
         const squad = await Squad.create({
-            squadName, playerCount, ranked, playStyle
+            squadName, playerCount, ranked, playStyle, createdBy, gameFor
         })
 
         await Player.findOneAndUpdate(
