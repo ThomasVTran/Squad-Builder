@@ -7,13 +7,7 @@ const gameSchema = new Schema({
   image: { 
     type: String 
   },
-  platforms: {
-    type: String
-  },
-  rating: {
-    type: Number
-  },
-  review: {
+  description: {
     type: String
   },
   squads: [{

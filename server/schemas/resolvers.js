@@ -62,8 +62,8 @@ const resolvers = {
         {new: true, runValidators: true}
        )
     },
-    addGame: async (parent, {name, image, platforms, rating, review}) => {
-        return Game.create({name, image, platforms, rating, review})
+    addGame: async (parent, {name, image, description}) => {
+        return Game.create({name, image, description})
     },
     addSquad: async (playerId, gameId, squadName, playerCount, ranked, playStyle) => {
         const squad = await Squad.create({
