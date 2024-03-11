@@ -35,6 +35,7 @@ type Auth{
 }
 
 type Query {
+    players: [Player]
     player(username: String!): Player
     games: [Game]
     game(gameId: ID!): Game
@@ -47,10 +48,10 @@ type Mutation {
     addPlayer(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removePlayer(playerId: ID!): Auth
-    addFriend(playerId: ID!, username: String!): Player
-    removeFriend(playerId: ID!): Player
+    addFriend(playerId: ID!, friendId: ID!): Player
+    removeFriend(playerId: ID!, friendId: ID!): Player
     addGame(name: String!, image: String!, platforms: String, rating: Int, review: String): Game
-    addSquad(squadName: String!, playerCount: Int, ranked: Boolean, playStyle: [String]): Squad
+    addSquad(playerId: ID!, gameId: ID!, squadName: String!, playerCount: Int, ranked: Boolean, playStyle: [String]): Squad
     removeSquad(squadId: ID!): Squad
 }
 
