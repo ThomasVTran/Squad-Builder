@@ -7,7 +7,7 @@ const validateEmail = function(email) {
 };
 
 const validatePassword = function(newPassword) {
-  const newPassword = document.getElementById('changePasswordForm').newPassword.value;
+  newPassword = document.getElementById('changePasswordForm').newPassword.value;
   const minNumberofChars = 5;
   const maxNumberofChars = 20;
   const regularExpression  = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,20}$/;
@@ -16,7 +16,7 @@ const validatePassword = function(newPassword) {
       return false;
   }
   if(!regularExpression.test(newPassword)) {
-      alert("password should contain atleast one number and one special character");
+      alert("password should contain at least one number and one special character");
       return false;
   } 
 };
@@ -43,15 +43,16 @@ const playerSchema = new Schema({
     minlength: 5,
     unique: true,
     match: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-    validate: validatePassword
+    // validatePAssword currently returns an error when attempting to add player
+    // validate: validatePassword
   },
   squads: [{
     type: Schema.Types.ObjectId,
-    ref: 'squad',
+    ref: 'Squad',
   }],
   friends: [{
     type: Schema.Types.ObjectId, 
-    ref: 'player',
+    ref: 'Player',
 }]
 },
 {
@@ -80,6 +81,6 @@ playerSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const player = model('player', playerSchema);
+const Player = model('Player', playerSchema);
 
-module.exports = player;
+module.exports = Player;

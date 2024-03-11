@@ -1,5 +1,5 @@
-const { Schema, Model } = require("mongoose");
-const date = require("../utils/dateFormat");
+const { Schema, model } = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
 
 const squadSchema = new Schema({
    squadName: {
@@ -22,15 +22,16 @@ const squadSchema = new Schema({
     }],
     players: [{
         type: Schema.Types.ObjectID,
-        ref: player
+        ref: 'Player'
     }],
     createdAt: {
         type: Date,
-        time: date
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp)
     }  
 }
 );
 
-const squad = Model('squad', squadSchema );
+const Squad = model('Squad', squadSchema );
 
-module.exports = squad;
+module.exports = Squad;
