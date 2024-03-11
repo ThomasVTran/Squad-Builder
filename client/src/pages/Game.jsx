@@ -1,8 +1,10 @@
+import GameCard from "../components/GameCard"
+
 export default function Game() {
 
     return (
         <main>
-            <p>Hello World!</p>
+            <GameCard/>
         </main>
     )
 }
