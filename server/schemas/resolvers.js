@@ -1,6 +1,5 @@
 const { Game, Player, Squad } = require("../models/index");
-const { signToken, AuthenticationError } = require('../utils/auth');
-
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -45,78 +44,97 @@ const resolvers = {
       const token = signToken(player);
       return { token, player };
     },
-    removePlayer: async (parent, {playerId}) => {
-        return Player.findOneAndDelete({_id: playerId})
+    removePlayer: async (parent, { playerId }) => {
+      return Player.findOneAndDelete({ _id: playerId });
     },
-    addFriend: async (parent, {playerId, friendId}) => {
-        return Player.findOneAndUpdate(
-            {_id: playerId},
-            {$addToSet: {friends: friendId}},
-            {new: true, runValidators: true}
-        )
+    addFriend: async (parent, { playerId, friendId }) => {
+      return Player.findOneAndUpdate(
+        { _id: playerId },
+        { $addToSet: { friends: friendId } },
+        { new: true, runValidators: true }
+      );
     },
-    removeFriend: async (parent, {playerId, friendId}) => {
-       return Player.findOneAndUpdate(
-        {_id: playerId},
-        {$pull: {friends: friendId}},
-        {new: true, runValidators: true}
-       )
-    },
-
-    addGame: async (parent, {name, image, platforms, rating, review}) => {
-        return Game.create({name, image, platforms, rating, review})
-    },
-    addSquad: async (parent, {playerId, gameId, squadName, playerCount, ranked, playStyle, createdBy, gameFor}) => {
-        const squad = await Squad.create({
-            squadName, playerCount, ranked, playStyle, createdBy, gameFor
-        })
-
-        await Player.findOneAndUpdate(
-            {_id: playerId},
-            {$addToSet: {squads: squad}},
-        )
-
-        await Game.findOneAndUpdate(
-            {_id: gameId},
-            {$addToSet: {squads: squad}},
-        )
-        return squad
+    removeFriend: async (parent, { playerId, friendId }) => {
+      return Player.findOneAndUpdate(
+        { _id: playerId },
+        { $pull: { friends: friendId } },
+        { new: true, runValidators: true }
+      );
     },
 
-    removeSquad: async (parent, {squadId, playerId, gameId}) => {
-        await Squad.findOneAndDelete({
-            _id: squadId
-        })
+    addGame: async (parent, { name, image, description }) => {
+      return Game.create({ name, image, description });
+    },
+    removeGame: async (parent, { gameID }) => {
+      return Game.findOneAndDelete({ _id: gameId });
+    },
+    addSquad: async (
+      parent,
+      {
+        playerId,
+        gameId,
+        squadName,
+        playerCount,
+        ranked,
+        playStyle,
+        createdBy,
+        gameFor,
+      }
+    ) => {
+      const squad = await Squad.create({
+        squadName,
+        playerCount,
+        ranked,
+        playStyle,
+        createdBy,
+        gameFor,
+      });
 
-        await Player.findOneAndUpdate(
-            {_id: playerId},
-            {$pull: {squads: squadId}},
-        )
+      await Player.findOneAndUpdate(
+        { _id: playerId },
+        { $addToSet: { squads: squad } }
+      );
 
-        await Game.findOneAndUpdate(
-            {_id: gameId},
-            {$pull: {squads: squadId}},
-        )
-        return squadId;
+      await Game.findOneAndUpdate(
+        { _id: gameId },
+        { $addToSet: { squads: squad } }
+      );
+      return squad;
     },
 
-    squadPlus: async (parent, {squadId, playerId}) => {
+    removeSquad: async (parent, { squadId, playerId, gameId }) => {
+      await Squad.findOneAndDelete({
+        _id: squadId,
+      });
+
+      await Player.findOneAndUpdate(
+        { _id: playerId },
+        { $pull: { squads: squadId } }
+      );
+
+      await Game.findOneAndUpdate(
+        { _id: gameId },
+        { $pull: { squads: squadId } }
+      );
+      return squadId;
+    },
+
+    squadPlus: async (parent, { squadId, playerId }) => {
       return Squad.findOneAndUpdate(
-        {_id: squadId},
-        {$addToSet: {players: playerId}},
-        {new: true}
-        )
+        { _id: squadId },
+        { $addToSet: { players: playerId } },
+        { new: true }
+      );
     },
 
-    squadMinus: async (parent, {squadId, playerId}) => {
+    squadMinus: async (parent, { squadId, playerId }) => {
       return Squad.findOneAndUpdate(
-        {_id: squadId},
-        {$pull: {players: playerId}},
-        {new: true}
-        )
-    }
+        { _id: squadId },
+        { $pull: { players: playerId } },
+        { new: true }
+      );
+    },
   },
 };
-
 
 module.exports = resolvers;

@@ -1,8 +1,10 @@
+import LoginForm from "../components/Login";
+
 export default function Login() {
 
     return (
         <main>
-            <p>Hello World Again!</p>
+            <LoginForm/>
         </main>
     )
 }
