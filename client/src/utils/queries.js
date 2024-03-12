@@ -80,3 +80,13 @@ game(gameId: $gameId) {
     }
   }
 `;
+
+export const QUERY_FRIENDS = gql`
+query Friends($username: String!) {
+  player(username: $username) {
+    friends {
+      username
+    }
+  }
+}
+`;
