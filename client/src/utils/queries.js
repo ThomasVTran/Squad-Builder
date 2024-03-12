@@ -1,7 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_PLAYER = gql`
-player(username: $username) {
+query Player($username: String!) {
+  player(username: $username) {
     _id
     username
     friends {
@@ -9,16 +10,24 @@ player(username: $username) {
     }
     squads {
       squadName
-      gameFor
-      players {
-        username
-      }
+      playerCount
     }
   }
+}
+`;
+
+export const QUERY_SQUADS = gql`
+query Squads {
+  squads {
+    squadName
+    playerCount
+  }
+}
 `;
 
 export const QUERY_SQUAD = gql`
-squad(squadId: $squadId) {
+query Squad($squadId: ID!) {
+  squad(squadId: $squadId) {
     _id
     squadName
     playerCount
@@ -31,31 +40,37 @@ squad(squadId: $squadId) {
     gameFor
     createdBy
   }
+}
 `;
 
 
 export const QUERY_ME = gql`
-me {
+query me {
+  me {
+  username
+  email
+  friends {
     username
-    email
-    friends {
+  }
+  squads {
+    _id
+    squadName
+    playerCount
+    ranked
+    createdAt
+    playStyle
+    players {
       username
     }
-    squads {
-      _id
-      squadName
-      playerCount
-      players {
-        username
-      }
-      gameFor
-      createdAt
-    }
+    gameFor
+    createdBy
   }
+  }
+}
 `;
 
 export const QUERY_GAMES = gql`
-games {
+query games {
     _id
     name
     image
@@ -64,19 +79,25 @@ games {
 `;
 
 export const QUERY_GAME = gql`
-game(gameId: $gameId) {
-    _id
+query Game($gameId: ID!) {
+  game(gameId: $gameId) {
     name
+    image
     squads {
       squadName
       playerCount
-      ranked
-      createdAt
-      playStyle
-      players {
-        username
-      }
       createdBy
     }
   }
+}
+`;
+
+export const QUERY_FRIENDS = gql`
+query Friends($username: String!) {
+  player(username: $username) {
+    friends {
+      username
+    }
+  }
+}
 `;

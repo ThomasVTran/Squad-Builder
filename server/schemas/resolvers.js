@@ -12,18 +12,25 @@ const resolvers = {
     games: async () => {
       return Game.find({});
     },
-    games: async (parent, { gameId }) => {
+    game: async (parent, { gameId }) => {
       return Game.findOne({ _id: gameId }).populate("squads");
     },
     squad: async (parent, { squadId }) => {
-      return Squad.findOne({ _id: squadId });
+      return Squad.findOne({ _id: squadId }).populate("players");
     },
     squads: async (parent, { username }) => {
-      return Squad.find({ username });
+      return Squad.find({ username }).populate("players");
     },
     squads: async (parent, { gameName }) => {
       return Squad.find({ name: gameName });
     },
+    me: async (parent, { username }, context) => {
+      console.log(context);
+      return Player.findOne(
+        // {_id : context.user._id}
+        {_id : "65f0776c8ddef36899508259"}
+        ).populate("friends", "squads");
+    }
   },
 
   Mutation: {
