@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form';
 import gameSearch from '../../utils/rawg'
 import { useState } from 'react';
-
+import GameCards from '../GameCards/index'
 function SearchBar() {
 
 const [results, setResults] = useState([])
@@ -12,7 +12,6 @@ const [search, setSearch] = useState('')
     const data = await response.json()
 
     setResults(data.results)
-    console.log(data.results);
   }
 
   const handleChange = (event) => {
@@ -32,8 +31,9 @@ const [search, setSearch] = useState('')
     }
 
 
-  // console.log(results);
+  console.log(results);
     return (
+      <>
       <Form onSubmit={handleSubmit}>
         <Form.Label htmlFor="inputGame">Search For A Game!</Form.Label>
         <Form.Control
@@ -41,8 +41,11 @@ const [search, setSearch] = useState('')
           name='game'
           onChange={handleChange}
           value={search}
+          
         />
       </Form>
+      <GameCards results={results}/>
+      </>
     );
   }
   
