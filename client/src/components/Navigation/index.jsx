@@ -35,11 +35,19 @@ const Navigation = () => {
                     </Nav.Item>
                 </>
             ) : (
+                <>
+                <Nav.Item>
+                <Link to="/signup" className={currentPage === '/signup' ? 'nav-link active' : 'nav-link'}>
+                    Signup
+                </Link>
+                </Nav.Item>
+
                 <Nav.Item>
                     <Link to="/login" className={currentPage === '/profile' ? 'nav-link active' : 'nav-link'}>
-                        Sign Up/Login
+                        Login
                     </Link>
                 </Nav.Item>
+                </>
             )}
         </Nav>
     )
