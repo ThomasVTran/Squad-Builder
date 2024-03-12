@@ -3,7 +3,6 @@
         "squadName": "Super",
         "playerCount": 6,
         "ranked": false,
-        "players": ["65ef8a63f0d7cb438511bab3",7,"65ef8a63f0d7cb438511bab5",8,"65ef8a63f0d7cb438511bab6",10],
         "createdBy": "Sam Kensworth",
         "gameFor": "Call of Duty: Modern Warfare 3"
     },
@@ -11,7 +10,6 @@
         "squadName": "Omega",
         "playerCount": 4,
         "ranked": false,
-        "players": ["65ef8a63f0d7cb438511bab4","65ef8a63f0d7cb438511bab5","65ef8a63f0d7cb438511bab3","65ef8a63f0d7cb438511bab7","65ef8a63f0d7cb438511bab6"],
         "createdBy": "Karl Sagen",
         "gameFor": "Helldivers 2"
     },
@@ -19,7 +17,6 @@
         "squadName": "Aplha",
         "playerCount": 3,
         "ranked": true,
-        "players": ["65ef8a63f0d7cb438511bab9","65ef8a63f0d7cb438511bab7","65ef8a63f0d7cb438511babc"],
         "createdBy": "Johnny Depp",
         "gameFor": "Rocket League"
     },
@@ -27,7 +24,6 @@
         "squadName": "Beta",
         "playerCount": 8,
         "ranked": false,
-        "players": ["65ef8a63f0d7cb438511bab7","65ef8a63f0d7cb438511bab9","65ef8a63f0d7cb438511bab6","65ef8a63f0d7cb438511babc","65ef8a63f0d7cb438511bab5","65ef8a63f0d7cb438511bab3","65ef8a63f0d7cb438511baba","65ef8a63f0d7cb438511bab8"],
         "createdBy": "Henry Cavill",
         "gameFor": "Battlefield 5"
     },
@@ -35,7 +31,6 @@
         "squadName": "Delta",
         "playerCount": 5,
         "ranked": true,
-        "players": ["65ef8a63f0d7cb438511bab8","65ef8a63f0d7cb438511bab9","65ef8a63f0d7cb438511bab6","65ef8a63f0d7cb438511bab7","65ef8a63f0d7cb438511bab5"],
         "createdBy": "Florence Pugh",
         "gameFor": "Overwatch 2"
     },
@@ -43,7 +38,6 @@
         "squadName": "Sigma",
         "playerCount": 4,
         "ranked": false,
-        "players": [10,"65ef8a63f0d7cb438511bab3","65ef8a63f0d7cb438511bab6","65ef8a63f0d7cb438511bab5"],
         "createdBy": "Drew Barrymore",
         "gameFor": "Destiny 2"
     },
@@ -51,7 +45,6 @@
         "squadName": "Kappa",
         "playerCount": 2,
         "ranked": true,
-        "players": ["65ef8a63f0d7cb438511babb","65ef8a63f0d7cb438511bab9"],
         "createdBy": "Cool Guy",
         "gameFor": "League of Legends"
     }
