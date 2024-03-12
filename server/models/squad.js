@@ -21,7 +21,7 @@ const squadSchema = new Schema({
         type: String
     }],
     players: [{
-        type: Schema.Types.ObjectID,
+        type: Schema.Types.ObjectId,
         ref: 'Player'
     }],
     createdBy: {

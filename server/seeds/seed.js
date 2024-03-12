@@ -10,18 +10,40 @@ db.once('open', async () => {
 
     await cleanDB('Player', 'players');
 
-    await Player.create(playerSeeds);
+    const players = await Player.create(playerSeeds);
+
+    console.log(players[Math.floor(Math.random()*players.length-1.)]);
 
     for (let i = 0; i < squadSeeds.length; i++) {
-      const { _id, createdBy } = await Squad.create(squadSeeds[i]);
+      const squad = await Squad.create(squadSeeds[i]);
       const player = await Player.findOneAndUpdate(
-        { username: createdBy },
+        { username: squad.createdBy },
         {
           $addToSet: {
-            squads: _id,
+            squads: squad._id,
           },
         }
       );
+      const players = await Player.find()
+      for (let j = 0; j < players.length; j++) {
+        const player = players[j]
+        console.log(player);
+        if (player.squads) {
+          for (let k = 0; k < player.squads.length; k++) {
+            const squad = player.squads[k]
+            await Squad.findOneAndUpdate({
+              _id: squad._id
+            },
+            {
+              $addToSet: {
+                players: player._id
+              }
+            })
+          }
+        }
+      }
+      
+
     }
   } catch (err) {
     console.error(err);
