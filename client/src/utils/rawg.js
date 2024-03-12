@@ -1,12 +1,7 @@
-const key = `8adfd634215b467ab9a401e778005ff2`
+const gameSearch = (game) => fetch(`https://api.rawg.io/api/games?key=8adfd634215b467ab9a401e778005ff2&search=${game}`)
 
-function gameSearch(game) {
+export default gameSearch
 
-const rawgSearch = `https://api.rawg.io/api/games?key=${key}&search=${game}`
-
-fetch(rawgSearch)
-.then((res) => res.json())
-.then((data)=>console.log(data))
-}
-
-gameSearch()
+// .then((res) => res.json())
+// .then((data)=>console.log(data))
+// gameSearch()

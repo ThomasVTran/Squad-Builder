@@ -1,8 +1,10 @@
+import GamesList from '../components/GameCards/index'
+
 export default function Home() {
 
     return (
         <main>
-            <p>Hello World!</p>
+            <GamesList/>
         </main>
     )
 }
