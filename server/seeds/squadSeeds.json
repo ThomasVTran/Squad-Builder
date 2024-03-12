@@ -3,7 +3,7 @@
         "squadName": "Super",
         "playerCount": 6,
         "ranked": false,
-        "players": ["65ef8a63f0d7cb438511bab3",7,"65ef8a63f0d7cb438511bab5",8,"65ef8a63f0d7cb438511bab6",10],
+        "players": ["Sam Kensworth","Johnny Depp","Megan Pennies","Arya Stark","Kiki Palmer","Drew Barrymore"],
         "createdBy": "Sam Kensworth",
         "gameFor": "Call of Duty: Modern Warfare 3"
     },
@@ -11,7 +11,7 @@
         "squadName": "Omega",
         "playerCount": 4,
         "ranked": false,
-        "players": ["65ef8a63f0d7cb438511bab4","65ef8a63f0d7cb438511bab5","65ef8a63f0d7cb438511bab3","65ef8a63f0d7cb438511bab7","65ef8a63f0d7cb438511bab6"],
+        "players": ["Karl Sagen","Megan Pennies","Sam Kensworth","Henry Cavill","Kiki Palmer"],
         "createdBy": "Karl Sagen",
         "gameFor": "Helldivers 2"
     },
@@ -19,7 +19,7 @@
         "squadName": "Aplha",
         "playerCount": 3,
         "ranked": true,
-        "players": ["65ef8a63f0d7cb438511bab9","65ef8a63f0d7cb438511bab7","65ef8a63f0d7cb438511babc"],
+        "players": ["Johnny Depp","Henry Cavill","Drew Barrymore"],
         "createdBy": "Johnny Depp",
         "gameFor": "Rocket League"
     },
@@ -27,7 +27,7 @@
         "squadName": "Beta",
         "playerCount": 8,
         "ranked": false,
-        "players": ["65ef8a63f0d7cb438511bab7","65ef8a63f0d7cb438511bab9","65ef8a63f0d7cb438511bab6","65ef8a63f0d7cb438511babc","65ef8a63f0d7cb438511bab5","65ef8a63f0d7cb438511bab3","65ef8a63f0d7cb438511baba","65ef8a63f0d7cb438511bab8"],
+        "players": ["Henry Cavill","Johnny Depp","Kiki Palmer","Drew Barrymore","Megan Pennies","Sam Kensworth","Arya Stark","Florence Pugh"],
         "createdBy": "Henry Cavill",
         "gameFor": "Battlefield 5"
     },
@@ -35,7 +35,7 @@
         "squadName": "Delta",
         "playerCount": 5,
         "ranked": true,
-        "players": ["65ef8a63f0d7cb438511bab8","65ef8a63f0d7cb438511bab9","65ef8a63f0d7cb438511bab6","65ef8a63f0d7cb438511bab7","65ef8a63f0d7cb438511bab5"],
+        "players": ["Florence Pugh","Johnny Depp","Kiki Palmer","Henry Cavill","Megan Pennies"],
         "createdBy": "Florence Pugh",
         "gameFor": "Overwatch 2"
     },
@@ -43,7 +43,7 @@
         "squadName": "Sigma",
         "playerCount": 4,
         "ranked": false,
-        "players": [10,"65ef8a63f0d7cb438511bab3","65ef8a63f0d7cb438511bab6","65ef8a63f0d7cb438511bab5"],
+        "players": ["Drew Barrymore","","Sam Kensworth","","Kiki Palmer","Megan Pennies"],
         "createdBy": "Drew Barrymore",
         "gameFor": "Destiny 2"
     },
@@ -51,7 +51,7 @@
         "squadName": "Kappa",
         "playerCount": 2,
         "ranked": true,
-        "players": ["65ef8a63f0d7cb438511babb","65ef8a63f0d7cb438511bab9"],
+        "players": ["Cool Guy","Johnny Depp"],
         "createdBy": "Cool Guy",
         "gameFor": "League of Legends"
     }
