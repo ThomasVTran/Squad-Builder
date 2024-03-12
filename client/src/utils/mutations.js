@@ -60,6 +60,25 @@ mutation RemoveFriend($playerId: ID!, $friendId: ID!) {
   }
 `
 
+export const ADD_GAME = gql`
+mutation AddGame($name: String, $image: String, $description: String) {
+  addGame(name: $name, image: $image, description: $description) {
+    _id
+    name
+    image
+    description
+  }
+}
+`
+
+export const REMOVE_GAME = gql`
+mutation RemoveGame($gameId: ID) {
+  removeGame(gameId: $gameId) {
+    _id
+  }
+}
+`
+
 export const ADD_SQUAD = gql`
 mutation AddSquad($playerId: ID!, $gameId: ID!, $squadName: String!, $playerCount: Int!, $ranked: Boolean!, $playStyle: [String]!) {
     addSquad(playerId: $playerId, gameId: $gameId, squadName: $squadName, playerCount: $playerCount, ranked: $ranked, playStyle: $playStyle) {
