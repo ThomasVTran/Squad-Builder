@@ -4,9 +4,9 @@ const SquadList = ({
   squads,
   squadName,
   showSquadName = true,
-  showUsername = true,
+  showSquads = true,
 }) => {
-  if (!squads.length) {
+  if (!squads) {
     return <h3>No Squads Yet</h3>;
   }
 
@@ -17,7 +17,7 @@ const SquadList = ({
         squads.map((squad) => (
           <div key={squad._id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
-              {showUsername ? (
+              {showSquads ? (
                 <Link
                   className="text-light"
                   to={`/profiles/${squad.squadName}`}
@@ -36,7 +36,7 @@ const SquadList = ({
               )}
             </h4>
             <div className="card-body bg-light p-2">
-              <p>{squad.squadText}</p>
+              <p>{squad.squadName}</p>
             </div>
             <Link
               className="btn btn-primary btn-block btn-squared"

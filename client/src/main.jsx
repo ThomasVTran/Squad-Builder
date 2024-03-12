@@ -12,33 +12,36 @@ import Home from './pages/Home.jsx';
 import Game from './pages/Game.jsx';
 
 const router = createBrowserRouter([{
-    path:`/`,
-    element: <App/>,
-    errorElement: <Error/>,
+    path: `/`,
+    element: <App />,
+    errorElement: <Error />,
     children: [
         {
             index: true,
-            element:<Home/>
+            element: <Home />
         },
         {
-            path: 'Signup',
-            element:<Signup/>
+            path: '/Signup',
+            element: <Signup />
+        },
+        {
+            path: '/Login',
+            element: <Login />
+        },
+        {
+            path: '/Player/:username',
+            element: <Player />
+        }, {
+            path: '/Me',
+            element: <Player />
         },        
         {
-            path: 'Login',
-            element:<Login/>
-        },        
-        {
-            path: 'Player',
-            element:<Player/>
-        },        
-        {
-            path: 'Game',
-            element:<Game/>
+            path: '/Game',
+            element: <Game />
         }
     ]
 }]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <RouterProvider router ={router}/>
-  )
+    <RouterProvider router={router} />
+)

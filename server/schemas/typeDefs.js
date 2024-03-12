@@ -5,7 +5,7 @@ type Player {
     email: String
     password: String
     friends: [Player]
-    squads: [Squad]!
+    squads: [Squad]
     
 }
 
@@ -16,7 +16,7 @@ type Squad {
     ranked: Boolean
     createdAt: String
     playStyle: [String]
-    players: [Player]!
+    players: [Player]
     gameFor: String
     createdBy: String
 }
@@ -26,7 +26,7 @@ type Game{
     name: String
     image: String
     description: String
-    squads: [Squad]!
+    squads: [Squad]
 }
 
 type Auth{

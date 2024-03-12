@@ -9,10 +9,15 @@ import Auth from '../../utils/auth';
 
 const SquadForm = () => {
   const [squadName, setSquadName] = useState('');
+  const [gameId, setGameId] = useState('');
+  const [playerCount, setPlayerCount] = useState('');
+  const [ranked, setRanked] = useState('');
+  const [playStyle, setPlayStyle] = useState('');
+
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addSquad, { error }] = useMutation (ADD_SQUAD, {
+  const [addSquad, { error }] = useMutation(ADD_SQUAD, {
     refetchQueries: [
       QUERY_SQUADS,
       'getSquads',
@@ -28,22 +33,45 @@ const SquadForm = () => {
       const { data } = await addSquad({
         variables: {
           squadName,
-          createdBy: Auth.getProfile().data.username,
+          createdBy: Auth.getPlayer().data.username,
+          gameId,
+          playerCount,
+          ranked,
+          playStyle
         },
       });
 
+      setRanked('');
+      setPlayerCount('');
       setSquadName('');
+      setGameId('');
     } catch (err) {
       console.error(err);
     }
+
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'squadText' && value.length <= 28) {
+    if (name === 'squadName' && value.length <= 28) {
       setSquadName(value);
       setCharacterCount(value.length);
+    }
+    if (name === 'gameId' && value.length <= 28) {
+      setGameId(value);
+      setCharacterCount(value.length);
+    }
+    if (name === 'playerCount' && value.length <= 9) {
+      setPlayerCount(value);
+      setCharacterCount(value.length);
+    }
+    if (name === 'playStyle' && value.length <= 28) {
+      setPlayStyle(value);
+      setCharacterCount(value.length);
+    }
+    if (name === 'ranked') {
+      setRanked(value);
     }
   };
 
@@ -53,13 +81,6 @@ const SquadForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
-          >
-            Character Count: {characterCount}/28
-          </p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -67,12 +88,84 @@ const SquadForm = () => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="squadName"
-                placeholder="Here's a new squad..."
+                placeholder="New squad..."
                 value={squadName}
                 className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                style={{ lineHeight: '1.5' }}
                 onChange={handleChange}
               ></textarea>
+              <p
+                className={`m-0 ${characterCount === 28 || error ? 'text-danger' : ''
+                  }`}
+              >
+                Character Count: {characterCount}/28
+              </p>
+
+              <br />
+
+              <textarea
+                name="gameId"
+                placeholder="Which game is this for?"
+                value={gameId}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5' }}
+                onChange={handleChange}
+              ></textarea>
+              <p
+                className={`m-0 ${characterCount === 28 || error ? 'text-danger' : ''
+                  }`}
+              >
+                Character Count: {characterCount}/28
+              </p>
+              <br />
+
+              <textarea
+                name="playerCount"
+                placeholder="Number of players in your squad"
+                value={playerCount}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5' }}
+                onChange={handleChange}
+              ></textarea>
+              <p
+                className={`m-0 ${characterCount === 8 || error ? 'text-danger' : ''
+                  }`}
+              >
+                Character Count: {characterCount}/8
+              </p>
+              <br />
+
+              <textarea
+                name="playStyle"
+                placeholder="How would you like your squad to play?"
+                value={playStyle}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5' }}
+                onChange={handleChange}
+              ></textarea>
+              <p
+                className={`m-0 ${characterCount === 28 || error ? 'text-danger' : ''
+                  }`}
+              >
+                Character Count: {characterCount}/28
+              </p>
+              <br />
+
+              <label>
+                <text>
+                  Ranked
+                </text>
+                <input
+                  name="ranked"
+                  type="checkbox"
+                  className="form-input w-100"
+                  style={{ lineHeight: '1.5' }}
+                  value={ranked}
+                  onChange={handleChange}
+                />
+              </label>
+
+
             </div>
 
             <div className="col-12 col-lg-3">
