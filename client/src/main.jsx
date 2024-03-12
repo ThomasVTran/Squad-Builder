@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './App.jsx';
 import Error from './App.jsx';
+import Signup from './pages/Signup.jsx'
 import Login from './pages/Logins.jsx';
 import Player from './pages/Player.jsx';
 import Home from './pages/Home.jsx';
@@ -19,6 +20,10 @@ const router = createBrowserRouter([{
             index: true,
             element:<Home/>
         },
+        {
+            path: 'Signup',
+            element:<Signup/>
+        },        
         {
             path: 'Login',
             element:<Login/>
