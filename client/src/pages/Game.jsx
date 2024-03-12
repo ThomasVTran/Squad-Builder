@@ -1,4 +1,4 @@
-import GameCard from "../components/Game"
+import GameCard from "../components/GameCard/index.jsx"
 
 export default function Game() {
 
