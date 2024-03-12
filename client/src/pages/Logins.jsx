@@ -5,7 +5,7 @@ import { LOGIN_PLAYER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
-const Login = (props) => {
+const Login = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_PLAYER);
 

@@ -24,7 +24,7 @@ const Navigation = () => {
             {Auth.loggedIn() ? (
                 <>
                     <Nav.Item>
-                        <Link to="/profile" className={currentPage === '/profile' ? 'nav-link active' : 'nav-link'}>
+                        <Link to="/player" className={currentPage === '/player' ? 'nav-link active' : 'nav-link'}>
                             {Auth.getPlayer().data.username}
                         </Link>
                     </Nav.Item>
