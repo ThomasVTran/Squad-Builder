@@ -82,6 +82,7 @@ query Games {
 export const QUERY_GAME = gql`
 query Game($gameId: ID!) {
   game(gameId: $gameId) {
+    _id
     name
     image
     description

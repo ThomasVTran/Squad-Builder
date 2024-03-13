@@ -40,8 +40,7 @@ const [search, setSearch] = useState('')
           type="text"
           name='game'
           onChange={handleChange}
-          value={search}
-          
+          value={search}          
         />
       </Form>
       <GameCards results={results}/>

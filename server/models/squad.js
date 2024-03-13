@@ -27,13 +27,13 @@ const squadSchema = new Schema({
     createdBy: {
         type: String, 
         ref: 'Player',
-        required: true
+        // required: true
     },
-    gameFor: {
-        type: String,
-        ref: 'Game',
-        required: true
-    },
+    // gameFor: {
+    //     type: String,
+    //     ref: 'Game',
+    //     required: true
+    // },
     createdAt: {
         type: Date,
         default: Date.now,

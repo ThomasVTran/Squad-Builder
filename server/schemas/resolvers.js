@@ -85,7 +85,7 @@ const resolvers = {
         ranked,
         playStyle,
         createdBy,
-        gameFor,
+        // gameFor,
       }
     ) => {
       const squad = await Squad.create({
@@ -94,7 +94,7 @@ const resolvers = {
         ranked,
         playStyle,
         createdBy,
-        gameFor,
+        // gameFor,
       });
 
       await Player.findOneAndUpdate(

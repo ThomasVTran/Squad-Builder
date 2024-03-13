@@ -52,7 +52,7 @@ type Mutation {
     removeFriend(playerId: ID!, friendId: ID!): Player
     addGame(name: String, image: String, description: String): Game
     removeGame(gameId: ID): Game
-    addSquad(playerId: ID!, gameId: ID!, squadName: String!, playerCount: Int!, ranked: Boolean!, playStyle: [String]!, createdBy: String, gameFor: String): Squad
+    addSquad(playerId: ID!, gameId: ID!, squadName: String!, playerCount: Int!, ranked: Boolean!, playStyle: [String]!, createdBy: String): Squad
     removeSquad(squadId: ID!, playerId: ID!, gameId: ID!): Squad
     squadPlus(squadId: ID!, playerId: ID! ): Squad
     squadMinus(squadId: ID!, playerId: ID! ): Squad
