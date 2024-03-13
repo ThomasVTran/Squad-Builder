@@ -19,8 +19,18 @@ query Player($username: String!) {
 export const QUERY_SQUADS = gql`
 query Squads {
   squads {
+    _id
     squadName
     playerCount
+    description
+    playStyle
+    ranked
+    players {
+      _id
+      username
+    }
+    createdBy
+    createdAt
   }
 }
 `;
@@ -31,6 +41,7 @@ query Squad($squadId: ID!) {
     _id
     squadName
     playerCount
+    description
     ranked
     createdAt
     playStyle
@@ -70,19 +81,22 @@ query me {
 `;
 
 export const QUERY_GAMES = gql`
-query games {
+query Games {
+  games {
     _id
     name
     image
-    description
   }
+}
 `;
 
 export const QUERY_GAME = gql`
 query Game($gameId: ID!) {
   game(gameId: $gameId) {
+    _id
     name
     image
+    description
     squads {
       squadName
       playerCount

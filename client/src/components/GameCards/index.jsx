@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_GAME } from "../../utils/mutations";
+import Styles from './index.css'
 
 
 
@@ -31,18 +31,18 @@ export default function GameCards(props) {
     
 
     return (
-        <section>
+        <>
         {props.results.map((result)=>( 
             
         <section key={result}>
             <h2>{result.name}</h2>
-            <img src={result.background_image}/>
+            <img className="searchedGames" src={result.background_image}/>
             <p></p>
         <button onClick={()=> {addNewGame(result.id)}}>
 
         </button>
         </section>
         ))}
-        </section>
+        </>
     )
 }

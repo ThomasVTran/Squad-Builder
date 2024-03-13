@@ -80,19 +80,21 @@ mutation RemoveGame($gameId: ID) {
 `
 
 export const ADD_SQUAD = gql`
-mutation AddSquad($playerId: ID!, $gameId: ID!, $squadName: String!, $playerCount: Int!, $ranked: Boolean!, $playStyle: [String]!) {
-    addSquad(playerId: $playerId, gameId: $gameId, squadName: $squadName, playerCount: $playerCount, ranked: $ranked, playStyle: $playStyle) {
+mutation AddSquad($playerId: ID!, $gameId: ID!, $squadName: String!, $playerCount: Int!, $ranked: Boolean!, $playStyle: [String]!, $createdBy: String, $description: String!) {
+  addSquad(playerId: $playerId, gameId: $gameId, squadName: $squadName, playerCount: $playerCount, ranked: $ranked, playStyle: $playStyle, createdBy: $createdBy, description: $description) {
+    _id
+    squadName
+    playerCount
+    description
+    players {
       _id
-      squadName
-      playerCount
-      players {
-        _id
-        username
-      }
-      ranked
-      playStyle
+      username
     }
+    ranked
+    playStyle
+    createdBy
   }
+}
 `
 
 export const REMOVE_SQUAD = gql`

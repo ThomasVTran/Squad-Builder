@@ -82,19 +82,21 @@ const resolvers = {
         gameId,
         squadName,
         playerCount,
+        description,
         ranked,
         playStyle,
         createdBy,
-        gameFor,
+        // gameFor,
       }
     ) => {
       const squad = await Squad.create({
         squadName,
         playerCount,
+        description,
         ranked,
         playStyle,
         createdBy,
-        gameFor,
+        // gameFor,
       });
 
       await Player.findOneAndUpdate(
