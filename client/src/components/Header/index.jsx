@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Navigation from '../Navigation/index.jsx';
-import SearchBar from '../SearchBar/index.jsx'
 
 const Header = () => {
     return (

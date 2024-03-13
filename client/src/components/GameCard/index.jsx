@@ -4,15 +4,17 @@ import { useQuery } from '@apollo/client';
 import { QUERY_GAME } from '../../utils/queries'
 
 export default function GameCard() {
-
-const {_id: gameParam } = useParams()
-
-const {loading, data, error} = useQuery(QUERY_GAME, {
-  variables: {gameId: gameParam}
+  const {_id: gameParam } = useParams();
+  const {loading, data, error} = useQuery(QUERY_GAME, {
+  variables: {gameId: gameParam},
 })
+
 if (error) {
   console.log(error);
-}
+} else if(loading){
+  return <span>Loading...</span>
+} else {
+
 console.log(data);
 
   return (
@@ -32,5 +34,5 @@ console.log(data);
     </Accordion>
     </section>
   );
+  }
 }
-

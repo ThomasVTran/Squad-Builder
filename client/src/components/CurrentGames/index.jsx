@@ -12,6 +12,10 @@ export default function CurrentGames() {
 
     console.log(games);
 
+    if(loading){
+      return <span>Loading</span>
+    } else{
+
     return (
         <>
         <section className='d-flex flex-row'>
@@ -29,4 +33,5 @@ export default function CurrentGames() {
         </section>
         </>
       );
+  }
 }
