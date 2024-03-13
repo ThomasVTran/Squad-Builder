@@ -32,12 +32,21 @@ const SquadForm = () => {
     ]
   });
 
+  const [squadPlus, { err }] = useMutation(SQUAD_PLUS , {
+    refetchQueries: [
+      QUERY_SQUADS,
+      'getSquads',
+      QUERY_ME,
+      'me'
+    ]
+  });
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
       console.log(Auth.getPlayer().data.username);
-      const { data } = await addSquad({
+      const {data} = await addSquad({
         variables: {
           playerId: Auth.getPlayer().data._id,
           gameId,
@@ -49,7 +58,14 @@ const SquadForm = () => {
         },
       });
 
-      const firstPlayer = await squadPlus
+      console.log(data);
+
+      const firstPlayer = await squadPlus({
+        variables: {
+          squadId: data.addSquad._id,
+          playerId: Auth.getPlayer().data._id
+        }
+      })
 
       setRanked('');
       setPlayerCount('');
