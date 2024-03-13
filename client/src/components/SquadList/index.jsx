@@ -28,12 +28,19 @@ const SquadList = () => {
     return <h3>No Squads Yet</h3>;
   } else {
     
-    // const newPlayer = squadPlus({
-    //   variables: {
-    //     squadId: gameSquads._id,
-    //     playerId: Auth.getPlayer().data._id
-    //   }
-    // })
+    const newPlayer = async (id)=>{ 
+      try {
+       await squadPlus({
+          variables: {
+            squadId: id,
+            playerId: Auth.getPlayer().data._id
+          }
+        })
+      } catch (error) {
+        console.log(error);
+      }
+
+  }
 
     console.log(gameSquads);
   return (
@@ -46,7 +53,7 @@ const SquadList = () => {
               <Card.Text>
               {squad.description}
               </Card.Text>
-        <Button variant="primary">Join Squad</Button>
+        <Button onClick={()=>newPlayer(squad._id)} variant="primary">Join Squad</Button>
       </Card.Body>
           </Card>
     ))
