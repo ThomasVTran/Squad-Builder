@@ -82,6 +82,7 @@ const resolvers = {
         gameId,
         squadName,
         playerCount,
+        description,
         ranked,
         playStyle,
         createdBy,
@@ -91,6 +92,7 @@ const resolvers = {
       const squad = await Squad.create({
         squadName,
         playerCount,
+        description,
         ranked,
         playStyle,
         createdBy,

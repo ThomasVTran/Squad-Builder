@@ -14,6 +14,7 @@ const SquadForm = () => {
   const [playerCount, setPlayerCount] = useState('');
   const [ranked, setRanked] = useState(false);
   const [playStyle, setPlayStyle] = useState([]);
+  const [description, setDescription] = useState('')
   const [characterCount, setCharacterCount] = useState(0);
 
   const { _id: gameParam } = useParams();
@@ -53,6 +54,7 @@ const SquadForm = () => {
           squadName,
           createdBy: Auth.getPlayer().data.username,
           playerCount,
+          description,
           ranked,
           playStyle
         },
@@ -92,6 +94,10 @@ const SquadForm = () => {
       setPlayerCount(parseInt(value));
       setCharacterCount(value.length);
     }
+    if (name === 'description') {
+      setDescription(value);
+      setCharacterCount(value.length);
+    }
     if (name === 'playStyle') {
       setPlayStyle([value]);
       setCharacterCount(value.length);
@@ -122,12 +128,12 @@ const SquadForm = () => {
                 style={{ lineHeight: '1.5' }}
                 onChange={handleChange}
               ></textarea>
-              <p
+              {/* <p
                 className={`m-0 ${characterCount === 28 || error ? 'text-danger' : ''
                   }`}
               >
                 Character Count: {characterCount}/28
-              </p>
+              </p> */}
 
               <br />
 
@@ -163,44 +169,45 @@ const SquadForm = () => {
               </p> */}
               <br />
               
-              <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        What kind of Squad do you want?
-      </Dropdown.Toggle>
-      <Dropdown.Menu>
-      {styleTags.map((tags)=> (
-        <label key={tags}>
-          <text>
-            {tags}
-          </text>
-          <input
-            name="playStyle"
-            type="checkbox"
-            className="form-input w-100"
-            style={{ lineHeight: '1.5' }}
-            value={tags}
-            onChange={handleChange}
-          />
-          </label>
-        ))}
-      </Dropdown.Menu>
-    </Dropdown>
 
-              {/* <textarea
-                name="playStyle"
+              <textarea
+                name="description"
                 placeholder="How would you like your squad to play?"
-                value={playStyle}
+                value={description}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5' }}
                 onChange={handleChange}
               ></textarea>
-              <p
+              {/* <p
                 className={`m-0 ${characterCount === 28 || error ? 'text-danger' : ''
-                  }`}
+              }`}
               >
-                Character Count: {characterCount}/28
+              Character Count: {characterCount}/28
               </p>
-              <br /> */}
+            <br /> */}
+
+            <Dropdown>
+    <Dropdown.Toggle variant="success" id="dropdown-basic">
+      Play Style Tags
+    </Dropdown.Toggle>
+    <Dropdown.Menu>
+    {styleTags.map((tags)=> (
+      <label key={tags}>
+        <text>
+          {tags}
+        </text>
+        <input
+          name="playStyle"
+          type="checkbox"
+          className="form-input w-100"
+          style={{ lineHeight: '1.5' }}
+          value={tags}
+          onChange={handleChange}
+        />
+        </label>
+      ))}
+    </Dropdown.Menu>
+  </Dropdown>
 
               <label>
                 <text>

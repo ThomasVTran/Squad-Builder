@@ -14,6 +14,10 @@ const squadSchema = new Schema({
         minLength: 1, 
         maxLength:8
     },
+    description: {
+        type: String,
+        required: true
+    },
     ranked:{
         type: Boolean
     },

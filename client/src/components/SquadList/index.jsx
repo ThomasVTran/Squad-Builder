@@ -1,11 +1,21 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import {SQUAD_PLUS} from '../../utils/mutations';
 import {QUERY_SQUADS} from '../../utils/queries';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Auth from '../../utils/auth';
 
-const SquadList = ({}) => {
+const SquadList = () => {
   
   const { loading, data, error} = useQuery(QUERY_SQUADS);
+
+  const [squadPlus, { err }] = useMutation(SQUAD_PLUS , {
+    refetchQueries: [
+      QUERY_SQUADS,
+      'getSquads'
+    ]
+  });
 
   if (error) {
     console.log(error);
@@ -18,17 +28,30 @@ const SquadList = ({}) => {
     return <h3>No Squads Yet</h3>;
   } else {
     
+    // const newPlayer = squadPlus({
+    //   variables: {
+    //     squadId: gameSquads._id,
+    //     playerId: Auth.getPlayer().data._id
+    //   }
+    // })
+
     console.log(gameSquads);
   return (
-    <>
-    {
-      gameSquads.map((squad)=> {
-        <section>
-          
-        </section>
-      })
+    <section>
+    { gameSquads.map((squad) => (
+          <Card key={squad} style={{ width: '18rem' }}>
+              <Card.Body>
+              <Card.Title>{squad.squadName}</Card.Title>
+              <p>{squad.players.length}/{squad.playerCount} Players</p>
+              <Card.Text>
+              {squad.description}
+              </Card.Text>
+        <Button variant="primary">Join Squad</Button>
+      </Card.Body>
+          </Card>
+    ))
     }
-    </>
+    </section>
   );
   }
 };

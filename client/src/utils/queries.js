@@ -22,6 +22,7 @@ query Squads {
     _id
     squadName
     playerCount
+    description
     playStyle
     ranked
     players {
@@ -40,6 +41,7 @@ query Squad($squadId: ID!) {
     _id
     squadName
     playerCount
+    description
     ranked
     createdAt
     playStyle
