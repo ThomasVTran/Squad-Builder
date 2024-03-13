@@ -70,12 +70,13 @@ query me {
 `;
 
 export const QUERY_GAMES = gql`
-query games {
+query Games {
+  games {
     _id
     name
     image
-    description
   }
+}
 `;
 
 export const QUERY_GAME = gql`

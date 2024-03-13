@@ -1,10 +1,10 @@
-import GamesList from '../components/GameCards/index'
+import CurrentGames from '../components/CurrentGames/index'
 
 export default function Home() {
 
     return (
         <main>
-            <GamesList/>
+            <CurrentGames/>
         </main>
     )
 }
