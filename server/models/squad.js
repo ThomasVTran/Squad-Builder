@@ -14,6 +14,10 @@ const squadSchema = new Schema({
         minLength: 1, 
         maxLength:8
     },
+    description: {
+        type: String,
+        required: true
+    },
     ranked:{
         type: Boolean
     },
@@ -26,14 +30,14 @@ const squadSchema = new Schema({
     }],
     createdBy: {
         type: String, 
-        ref: 'Player',
-        required: true
+        // ref: 'Player',
+        // required: true
     },
-    gameFor: {
-        type: String,
-        ref: 'Game',
-        required: true
-    },
+    // gameFor: {
+    //     type: String,
+    //     ref: 'Game',
+    //     required: true
+    // },
     createdAt: {
         type: Date,
         default: Date.now,

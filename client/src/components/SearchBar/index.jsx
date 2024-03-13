@@ -2,6 +2,8 @@ import Form from 'react-bootstrap/Form';
 import gameSearch from '../../utils/rawg'
 import { useState } from 'react';
 import GameCards from '../GameCards/index'
+import Styles from './index.css'
+
 function SearchBar() {
 
 const [results, setResults] = useState([])
@@ -33,19 +35,20 @@ const [search, setSearch] = useState('')
 
   console.log(results);
     return (
-      <>
-      <Form onSubmit={handleSubmit}>
-        <Form.Label htmlFor="inputGame">Search For A Game!</Form.Label>
+      <section className='searchContainer d-flex flex-column align-items-end flex-wrap'>
+      <Form className='searchBar' onSubmit={handleSubmit}>
         <Form.Control
+        placeholder='Search For A Game!'
           type="text"
           name='game'
           onChange={handleChange}
-          value={search}
-          
+          value={search}          
         />
       </Form>
+      <div className='d-flex flex-row'>
       <GameCards results={results}/>
-      </>
+      </div>
+      </section>
     );
   }
   

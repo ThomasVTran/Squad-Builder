@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-
-import { ADD_SQUAD } from '../../utils/mutations';
-import { QUERY_SQUADS, QUERY_ME } from '../../utils/queries';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+import { ADD_SQUAD, SQUAD_PLUS } from '../../utils/mutations';
+import { QUERY_SQUADS, QUERY_ME, QUERY_GAME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
@@ -12,12 +13,27 @@ const SquadForm = () => {
   const [gameId, setGameId] = useState('');
   const [playerCount, setPlayerCount] = useState('');
   const [ranked, setRanked] = useState(false);
-  const [playStyle, setPlayStyle] = useState('');
-
-
+  const [playStyle, setPlayStyle] = useState([]);
+  const [description, setDescription] = useState('')
   const [characterCount, setCharacterCount] = useState(0);
 
+  const { _id: gameParam } = useParams();
+  const { loading, data } = useQuery(QUERY_GAME, {
+    variables: { gameId: gameParam },
+  });
+
+
+
   const [addSquad, { error }] = useMutation(ADD_SQUAD, {
+    refetchQueries: [
+      QUERY_SQUADS,
+      'getSquads',
+      QUERY_ME,
+      'me'
+    ]
+  });
+
+  const [squadPlus, { err }] = useMutation(SQUAD_PLUS, {
     refetchQueries: [
       QUERY_SQUADS,
       'getSquads',
@@ -30,18 +46,31 @@ const SquadForm = () => {
     event.preventDefault();
 
     try {
+      console.log(Auth.getPlayer().data.username);
       const { data } = await addSquad({
         variables: {
+          playerId: Auth.getPlayer().data._id,
+          gameId,
           squadName,
           createdBy: Auth.getPlayer().data.username,
-          gameId,
-          playerCount: parseInt(playerCount),
+          playerCount,
+          description,
           ranked,
           playStyle
         },
       });
 
-      setPlayStyle('');
+
+      console.log(data);
+
+      const firstPlayer = await squadPlus({
+        variables: {
+          squadId: data.addSquad._id,
+          playerId: Auth.getPlayer().data._id
+        }
+      })
+
+      setPlayStyle([]);
       setRanked('');
       setPlayerCount('');
       setSquadName('');
@@ -59,22 +88,28 @@ const SquadForm = () => {
       setSquadName(value);
       setCharacterCount(value.length);
     }
-    if (name === 'gameId' && value.length <= 28) {
-      setGameId(value);
+    if (data.game._id) {
+      setGameId(data.game._id);
       setCharacterCount(value.length);
     }
     if (name === 'playerCount' && value.length <= 9) {
-      setPlayerCount(value);
+      setPlayerCount(parseInt(value));
       setCharacterCount(value.length);
     }
-    if (name === 'playStyle' && value.length <= 28) {
-      setPlayStyle(value);
+    if (name === 'description') {
+      setDescription(value);
+      setCharacterCount(value.length);
+    }
+    if (name === 'playStyle') {
+      setPlayStyle([value]);
       setCharacterCount(value.length);
     }
     if (name === 'ranked' && event.target.checked) {
       setRanked(true);
     }
   };
+
+  const styleTags = ["Competitive", "Casual", "Mic", "No Mic", "Weekends", "Weekdays", "For Fun", "For Content", "For Laughs", "Roleplay"]
 
   return (
     <div>
@@ -95,30 +130,30 @@ const SquadForm = () => {
                 style={{ lineHeight: '1.5' }}
                 onChange={handleChange}
               ></textarea>
-              <p
+              {/* <p
                 className={`m-0 ${characterCount === 28 || error ? 'text-danger' : ''
                   }`}
               >
                 Character Count: {characterCount}/28
-              </p>
+              </p> */}
 
               <br />
 
-              <textarea
+              {/* <textarea
                 name="gameId"
                 placeholder="Which game is this for?"
                 value={gameId}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5' }}
                 onChange={handleChange}
-              ></textarea>
-              <p
+              ></textarea> */}
+              {/* <p
                 className={`m-0 ${characterCount === 28 || error ? 'text-danger' : ''
                   }`}
               >
                 Character Count: {characterCount}/28
               </p>
-              <br />
+              <br /> */}
 
               <textarea
                 name="playerCount"
@@ -128,29 +163,53 @@ const SquadForm = () => {
                 style={{ lineHeight: '1.5' }}
                 onChange={handleChange}
               ></textarea>
-              <p
+              {/* <p
                 className={`m-0 ${characterCount === 8 || error ? 'text-danger' : ''
                   }`}
               >
                 Character Count: {characterCount}/8
-              </p>
+              </p> */}
               <br />
 
+
               <textarea
-                name="playStyle"
+                name="description"
                 placeholder="How would you like your squad to play?"
-                value={playStyle}
+                value={description}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5' }}
                 onChange={handleChange}
               ></textarea>
-              <p
+              {/* <p
                 className={`m-0 ${characterCount === 28 || error ? 'text-danger' : ''
-                  }`}
+              }`}
               >
-                Character Count: {characterCount}/28
+              Character Count: {characterCount}/28
               </p>
-              <br />
+            <br /> */}
+
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  Play Style Tags
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {styleTags.map((tags) => (
+                    <label key={tags}>
+                      <text>
+                        {tags}
+                      </text>
+                      <input
+                        name="playStyle"
+                        type="checkbox"
+                        className="form-input w-100"
+                        style={{ lineHeight: '1.5' }}
+                        value={tags}
+                        onChange={handleChange}
+                      />
+                    </label>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
 
               <label>
                 <div>

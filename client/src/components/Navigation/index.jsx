@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 
+
 import Auth from '../../utils/auth.js'
 
 const Navigation = () => {
@@ -10,7 +11,7 @@ const Navigation = () => {
         Auth.logout();
     };
     return (
-        <Nav className="justify-content-center" activeKey="/">
+        <Nav className="justify-content-end" activeKey="/">
             <Nav.Item>
                 <Link to="/" className={currentPage === '/' ? 'nav-link active' : 'nav-link'} href="/">
                     Home

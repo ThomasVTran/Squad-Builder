@@ -86,22 +86,22 @@ const resolvers = {
         gameId,
         squadName,
         playerCount,
+        description,
         ranked,
         playStyle,
         createdBy,
-        gameFor,
-      },
-      context
+        // gameFor,
+      }
     ) => {
       if (context) {
       const squad = await Squad.create({
         squadName,
         playerCount,
+        description,
         ranked,
         playStyle,
         createdBy,
-        gameFor,
-        playerId : context.player._id
+        // gameFor,
       });
 
       await Player.findOneAndUpdate(
