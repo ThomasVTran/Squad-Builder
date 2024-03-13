@@ -16,7 +16,6 @@ const squadSchema = new Schema({
     },
     description: {
         type: String,
-        required: true
     },
     ranked:{
         type: Boolean
