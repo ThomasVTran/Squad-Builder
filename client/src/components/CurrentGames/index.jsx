@@ -3,6 +3,7 @@ import { QUERY_GAMES } from "../../utils/queries"
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Styles from './index.css'
 
 
 
@@ -18,9 +19,9 @@ export default function CurrentGames() {
 
     return (
         <>
-        <section className='d-flex flex-row'>
+        <section className='d-flex flex-row justify-content-center'>
         {games.map((data)=>(           
-        <Card key={data} style={{ width: '18rem' }}>
+        <Card className='gameCards' key={data} style={{ width: '18rem' }}>
           <Card.Img variant="top" src={data.image} />
           <Card.Body>
             <Card.Title>{data.name}</Card.Title>
