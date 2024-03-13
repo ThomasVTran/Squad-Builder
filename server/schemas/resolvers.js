@@ -24,13 +24,17 @@ const resolvers = {
     squads: async (parent, { gameName }) => {
       return Squad.find({ name: gameName });
     },
-    me: async (parent, { username }, context) => {
+    me: async (parent, args, context) => {
       console.log(context);
-      return Player.findOne(
-        // {_id : context.user._id}
-        {_id : "65f0776c8ddef36899508259"}
-        ).populate("friends", "squads");
-    }
+      if(context.user) {
+        return Player.findOne(
+          {_id : context.user._id}
+          // {_id : "65f0776c8ddef36899508259"}
+          ).populate("friends", "squads");
+      }
+        throw AuthenticationError
+      
+    } 
   },
 
   Mutation: {
@@ -78,7 +82,7 @@ const resolvers = {
     addSquad: async (
       parent,
       {
-        playerId,
+        playerId ,
         gameId,
         squadName,
         playerCount,
@@ -89,6 +93,7 @@ const resolvers = {
         // gameFor,
       }
     ) => {
+      if (context) {
       const squad = await Squad.create({
         squadName,
         playerCount,
@@ -100,7 +105,7 @@ const resolvers = {
       });
 
       await Player.findOneAndUpdate(
-        { _id: playerId },
+        { _id: context.player._id },
         { $addToSet: { squads: squad } }
       );
 
@@ -109,6 +114,7 @@ const resolvers = {
         { $addToSet: { squads: squad } }
       );
       return squad;
+      }
     },
 
     removeSquad: async (parent, { squadId, playerId, gameId }) => {

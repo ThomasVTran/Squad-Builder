@@ -18,11 +18,11 @@ const SquadForm = () => {
   const [characterCount, setCharacterCount] = useState(0);
 
   const { _id: gameParam } = useParams();
-  const { loading, data} = useQuery(QUERY_GAME, {
+  const { loading, data } = useQuery(QUERY_GAME, {
     variables: { gameId: gameParam },
   });
 
- 
+
 
   const [addSquad, { error }] = useMutation(ADD_SQUAD, {
     refetchQueries: [
@@ -33,7 +33,7 @@ const SquadForm = () => {
     ]
   });
 
-  const [squadPlus, { err }] = useMutation(SQUAD_PLUS , {
+  const [squadPlus, { err }] = useMutation(SQUAD_PLUS, {
     refetchQueries: [
       QUERY_SQUADS,
       'getSquads',
@@ -47,7 +47,7 @@ const SquadForm = () => {
 
     try {
       console.log(Auth.getPlayer().data.username);
-      const {data} = await addSquad({
+      const { data } = await addSquad({
         variables: {
           playerId: Auth.getPlayer().data._id,
           gameId,
@@ -60,6 +60,7 @@ const SquadForm = () => {
         },
       });
 
+
       console.log(data);
 
       const firstPlayer = await squadPlus({
@@ -69,6 +70,7 @@ const SquadForm = () => {
         }
       })
 
+      setPlayStyle([]);
       setRanked('');
       setPlayerCount('');
       setSquadName('');
@@ -102,8 +104,8 @@ const SquadForm = () => {
       setPlayStyle([value]);
       setCharacterCount(value.length);
     }
-    if (name === 'ranked' && checkbox.checked != true) {
-      setRanked(value);
+    if (name === 'ranked' && event.target.checked) {
+      setRanked(true);
     }
   };
 
@@ -168,7 +170,7 @@ const SquadForm = () => {
                 Character Count: {characterCount}/8
               </p> */}
               <br />
-              
+
 
               <textarea
                 name="description"
@@ -186,33 +188,33 @@ const SquadForm = () => {
               </p>
             <br /> */}
 
-            <Dropdown>
-    <Dropdown.Toggle variant="success" id="dropdown-basic">
-      Play Style Tags
-    </Dropdown.Toggle>
-    <Dropdown.Menu>
-    {styleTags.map((tags)=> (
-      <label key={tags}>
-        <text>
-          {tags}
-        </text>
-        <input
-          name="playStyle"
-          type="checkbox"
-          className="form-input w-100"
-          style={{ lineHeight: '1.5' }}
-          value={tags}
-          onChange={handleChange}
-        />
-        </label>
-      ))}
-    </Dropdown.Menu>
-  </Dropdown>
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  Play Style Tags
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {styleTags.map((tags) => (
+                    <label key={tags}>
+                      <text>
+                        {tags}
+                      </text>
+                      <input
+                        name="playStyle"
+                        type="checkbox"
+                        className="form-input w-100"
+                        style={{ lineHeight: '1.5' }}
+                        value={tags}
+                        onChange={handleChange}
+                      />
+                    </label>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
 
               <label>
-                <text>
+                <div>
                   Ranked
-                </text>
+                </div>
                 <input
                   name="ranked"
                   type="checkbox"
@@ -222,13 +224,11 @@ const SquadForm = () => {
                   onChange={handleChange}
                 />
               </label>
-
-
             </div>
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Squad
+                Create Squad
               </button>
             </div>
             {error && (

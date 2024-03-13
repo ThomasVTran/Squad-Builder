@@ -54,7 +54,6 @@ query Squad($squadId: ID!) {
 }
 `;
 
-
 export const QUERY_ME = gql`
 query me {
   me {
