@@ -117,7 +117,7 @@ const SquadForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-          <form
+          <Form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
@@ -236,7 +236,7 @@ const SquadForm = () => {
                 {error.message}
               </div>
             )}
-          </form>
+          </Form>
         </>
       ) : (
         <p>

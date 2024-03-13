@@ -91,7 +91,8 @@ const resolvers = {
         playStyle,
         createdBy,
         // gameFor,
-      }
+      },
+      context
     ) => {
       if (context) {
       const squad = await Squad.create({
@@ -105,7 +106,7 @@ const resolvers = {
       });
 
       await Player.findOneAndUpdate(
-        { _id: context.player._id },
+        { _id: context.user._id },
         { $addToSet: { squads: squad } }
       );
 
