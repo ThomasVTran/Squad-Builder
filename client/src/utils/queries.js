@@ -84,6 +84,7 @@ query Game($gameId: ID!) {
   game(gameId: $gameId) {
     name
     image
+    description
     squads {
       squadName
       playerCount

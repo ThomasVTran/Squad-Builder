@@ -15,9 +15,6 @@ const Header = () => {
                 <Col>
                     <Navigation />
                 </Col>
-                <Col>
-                    <SearchBar />
-                </Col>
             </Row>
         </Container>
     )

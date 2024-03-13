@@ -1,10 +1,11 @@
-import CurrentGames from '../components/CurrentGames/index'
+import CurrentGames from "../components/CurrentGames/index";
+import SearchBar from "../components/SearchBar";
 
 export default function Home() {
-
-    return (
-        <main>
-            <CurrentGames/>
-        </main>
-    )
+  return (
+    <main>
+      <SearchBar />
+      <CurrentGames />
+    </main>
+  );
 }
