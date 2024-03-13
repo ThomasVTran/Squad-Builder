@@ -31,7 +31,7 @@ type Game{
 
 type Auth{
     token: ID!
-    Player: Player
+    player: Player
 }
 
 type Query {

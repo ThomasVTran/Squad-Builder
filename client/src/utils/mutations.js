@@ -15,7 +15,7 @@ export const LOGIN_PLAYER = gql`
 mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
-      Player {
+      player {
         _id
         username
       }
@@ -27,7 +27,7 @@ export const REMOVE_PLAYER = gql`
 mutation RemovePlayer($playerId: ID!) {
     removePlayer(playerId: $playerId) {
       token
-      Player {
+      player {
         _id
       }
     }

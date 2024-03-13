@@ -11,7 +11,7 @@ const SquadForm = () => {
   const [squadName, setSquadName] = useState('');
   const [gameId, setGameId] = useState('');
   const [playerCount, setPlayerCount] = useState('');
-  const [ranked, setRanked] = useState('');
+  const [ranked, setRanked] = useState(false);
   const [playStyle, setPlayStyle] = useState('');
 
 
@@ -35,12 +35,13 @@ const SquadForm = () => {
           squadName,
           createdBy: Auth.getPlayer().data.username,
           gameId,
-          playerCount,
+          playerCount: parseInt(playerCount),
           ranked,
           playStyle
         },
       });
 
+      setPlayStyle('');
       setRanked('');
       setPlayerCount('');
       setSquadName('');
@@ -70,8 +71,8 @@ const SquadForm = () => {
       setPlayStyle(value);
       setCharacterCount(value.length);
     }
-    if (name === 'ranked') {
-      setRanked(value);
+    if (name === 'ranked' && event.target.checked) {
+      setRanked(true);
     }
   };
 
@@ -152,9 +153,9 @@ const SquadForm = () => {
               <br />
 
               <label>
-                <text>
+                <div>
                   Ranked
-                </text>
+                </div>
                 <input
                   name="ranked"
                   type="checkbox"
@@ -164,13 +165,11 @@ const SquadForm = () => {
                   onChange={handleChange}
                 />
               </label>
-
-
             </div>
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Squad
+                Create Squad
               </button>
             </div>
             {error && (
