@@ -19,8 +19,17 @@ query Player($username: String!) {
 export const QUERY_SQUADS = gql`
 query Squads {
   squads {
+    _id
     squadName
     playerCount
+    playStyle
+    ranked
+    players {
+      _id
+      username
+    }
+    createdBy
+    createdAt
   }
 }
 `;

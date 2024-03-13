@@ -26,7 +26,7 @@ const squadSchema = new Schema({
     }],
     createdBy: {
         type: String, 
-        ref: 'Player',
+        // ref: 'Player',
         // required: true
     },
     // gameFor: {
